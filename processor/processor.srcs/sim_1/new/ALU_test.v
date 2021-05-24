@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.05.2021 14:36:24
+// Create Date: 23.05.2021 11:36:21
 // Design Name: 
-// Module Name: multiplexer
+// Module Name: ALU_test
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,14 +20,27 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module multiplexer(//8 port, 8 bit multiplexer, for smaller port count conect only first fev outputs
-    input [63:0] idata,
-    input [2:0] select,
-    output [7:0] odata
+module ALU_test(
+
+    );
+    wire [7:0]alu_res;
+    reg [7:0]in_1 = 8'd0;
+    reg [7:0]in_2 = 8'd10;
+    reg [2:0]alu_op = 3'd0;
+    
+    
+    ALU test_alu(
+    .rx_mux(in_1),
+    .imm_mux(in_2),
+    .alu_op(alu_op),
+    .alu_res(alu_res)
     );
     
-     wire [7:0] array [7:0];
-     assign {array[7],array[6],array[5],array[4],array[3],array[2],array[1],array[0]} = idata;
-     assign odata = array[select];
-     
+    initial
+    begin
+        while(1)
+        begin
+            #10;alu_op <= alu_op + 3'd1;
+        end
+    end
 endmodule

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 20.05.2021 14:36:24
+// Create Date: 22.05.2021 15:10:01
 // Design Name: 
-// Module Name: multiplexer
+// Module Name: register
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,14 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module multiplexer(//8 port, 8 bit multiplexer, for smaller port count conect only first fev outputs
-    input [63:0] idata,
-    input [2:0] select,
+module register(
+    input [7:0] idata,
+    input clk,
+    input ce,
     output [7:0] odata
     );
-    
-     wire [7:0] array [7:0];
-     assign {array[7],array[6],array[5],array[4],array[3],array[2],array[1],array[0]} = idata;
-     assign odata = array[select];
-     
+    reg [7:0] data = 8'h00;
+    always @(posedge clk)
+    begin
+        if(ce) data <= idata;
+        else data <= data;
+    end
+    assign odata = data;
 endmodule

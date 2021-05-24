@@ -1,0 +1,8 @@
+0.6
+2018.3
+Dec  7 2018
+00:33:28
+D:/AGH/AGH_sem6/SR/Procesor_lab/processor/processor.sim/sim_1/behav/xsim/glbl.v,1544155481,verilog,,,,glbl,,,,,,,,
+D:/AGH/AGH_sem6/SR/Procesor_lab/processor/processor.srcs/sim_1/new/ALU_test.v,1621764694,verilog,,,,ALU_test,,,,,,,,
+D:/AGH/AGH_sem6/SR/Procesor_lab/processor/processor.srcs/sources_1/new/ALU.v,1621764194,verilog,,D:/AGH/AGH_sem6/SR/Procesor_lab/processor/processor.srcs/sources_1/new/multiplexer.v,,ALU;AND;equal_0;sum,,,,,,,,
+D:/AGH/AGH_sem6/SR/Procesor_lab/processor/processor.srcs/sources_1/new/multiplexer.v,1621685396,verilog,,D:/AGH/AGH_sem6/SR/Procesor_lab/processor/processor.srcs/sim_1/new/ALU_test.v,,multiplexer,,,,,,,,
