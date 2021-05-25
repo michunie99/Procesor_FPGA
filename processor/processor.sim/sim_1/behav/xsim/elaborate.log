@@ -1,17 +1,21 @@
 Vivado Simulator 2018.3
 Copyright 1986-1999, 2001-2018 Xilinx, Inc. All Rights Reserved.
-Running: D:/XILINX/Vivado/2018.3/bin/unwrapped/win64.o/xelab.exe -wto bc1b077387084fe8a48cbc1b47903ef7 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot ALU_test_behav xil_defaultlib.ALU_test xil_defaultlib.glbl -log elaborate.log 
+Running: D:/XILINX/Vivado/2018.3/bin/unwrapped/win64.o/xelab.exe -wto bc1b077387084fe8a48cbc1b47903ef7 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot testbench_processor_behav xil_defaultlib.testbench_processor xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
+WARNING: [VRFC 10-3091] actual bit length 8 differs from formal bit length 1 for port 'pc_addr' [D:/AGH/AGH_sem6/SR/Procesor_lab/processor/processor.srcs/sim_1/new/testbench_processor.v:43]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.AND
+Compiling module xil_defaultlib.decoder
+Compiling module xil_defaultlib.register
+Compiling module xil_defaultlib.multiplexer
 Compiling module xil_defaultlib.equal_0
 Compiling module xil_defaultlib.sum
-Compiling module xil_defaultlib.multiplexer
+Compiling module xil_defaultlib.AND
 Compiling module xil_defaultlib.ALU
-Compiling module xil_defaultlib.ALU_test
+Compiling module xil_defaultlib.processor
+Compiling module xil_defaultlib.testbench_processor
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot ALU_test_behav
+Built simulation snapshot testbench_processor_behav

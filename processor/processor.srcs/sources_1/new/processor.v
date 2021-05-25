@@ -34,6 +34,7 @@ module processor(
     wire rd_op;
     wire [2:0]d_op;
     wire [7:0]imm;
+    wire jump_cond;
     //assign instr to wires
     assign pc_op=instr[25:24];
     assign alu_op=instr[21:20];
@@ -49,8 +50,9 @@ module processor(
     wire [7:0]pc_mux;
     wire [7:0]rx_mux;
     wire [7:0]ry_mux;
-    wire [7:0]alu_mux;
     wire [7:0]imm_mux;
+    wire [7:0]alu_res;
+    wire cmp_res;
     //decoder unit for ce in r0-r6
     wire [6:0]decoder;
     decoder decoder_(
@@ -99,7 +101,7 @@ module processor(
         .odata(r5)
     );  
     register r6_(
-        .idata(7'h00),
+        .idata(8'h00),
         .clk(clk),
         .ce(decoder[6]),
         .odata(r6)
@@ -112,28 +114,39 @@ module processor(
     );
     //multiplexers (exept alu_mux, inplemented in ALU module)
     multiplexer rd_mux_(
-        .idata(alu),
-        .select(),
+        .idata({8'h00,8'h00,8'h00,8'h00,8'h00,8'h00,alu_res,alu_res}), //nie rozumiem o co tu chodzi!!
+        .select({2'b00,rd_op}),
         .odata(rd_mux)
     );
     multiplexer pc_mux_(
-        .idata(),
-        .select(),
+        .idata({8'h00,8'h00,8'h00,8'h00,8'h00,8'h00,alu_res,r7 + 8'd1}),
+        .select({2'b00,jump_cond}),
         .odata(pc_mux)    
     );
     multiplexer rx_mux_(
-        .idata(),
-        .select(),
+        .idata({r7,r6,r5,r4,r3,r2,r1,r0}),
+        .select(rx_op),
         .odata(rx_mux)   
     );
     multiplexer ry_mux_(
-        .idata(),
-        .select(),
+        .idata({r7,r6,r5,r4,r3,r2,r1,r0}),
+        .select(ry_op),
         .odata(ry_mux)    
     );
     multiplexer imm_mux_(
-        .idata(),
-        .select(),
+        .idata({8'h00,8'h00,8'h00,8'h00,8'h00,8'h00,imm,ry_mux}),
+        .select({2'b00,imm_op}),
         .odata(imm_mux)    
     );
+    //ALU module
+    ALU alu_processor(
+        .rx_mux(rx_mux),
+        .imm_mux(imm_mux),
+        .alu_op({1'b0,alu_op}),
+        .alu_res(alu_res),
+        .cmp_res(cmp_res)
+    );
+    
+    assign jump_cond = pc_op & cmp_res; //czy to jest warunek skoku
+    assign pc_addr = r7;
 endmodule

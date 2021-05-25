@@ -23,7 +23,8 @@ module ALU(
     input [7:0] rx_mux,
     input [7:0] imm_mux,
     input [2:0]alu_op,
-    output [7:0]alu_res
+    output [7:0]alu_res,
+    output cmp_res
     );
     wire [7:0] AND_2_mux;wire [7:0] sum_2_mux;wire [7:0] equal_2_mux;
     
@@ -41,7 +42,7 @@ module ALU(
     AND ALU_AND(
         .in_1(rx_mux),
         .in_2(imm_mux),
-        .out(sum_2_mux)
+        .out(AND_2_mux)
     );
     
     multiplexer alu_mux(
@@ -49,6 +50,8 @@ module ALU(
         .select(alu_op),
         .odata(alu_res)  
     );
+    
+    assign cmp_res = equal_2_mux[0];
 endmodule
 
 
