@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 25.05.2021 13:03:23
+// Create Date: 26.05.2021 20:51:07
 // Design Name: 
-// Module Name: testbench_processor
+// Module Name: jump_cond
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,21 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench_processor(
-
+module jump_cond(
+    input [7:0]cmp_res,
+    input [1:0]pc_op,
+    output jump_cond
     );
-
-    reg clk=1'b0;
-    initial
-    begin
-        while(1)
-        begin
-            #1 clk=1'b0;
-            #1 clk=1'b1;
-        end
-    end
     
-    processor test_processor(
-        .clk(clk)
-    );
+    assign jump_cond =  (pc_op == 2'b11)?1'b0:
+                     (pc_op == 2'b01 & cmp_res[0])?1'b0:
+                     (pc_op == 2'b10 & ~cmp_res[0])?1'b0:
+                                                  1'b1;
+    
 endmodule

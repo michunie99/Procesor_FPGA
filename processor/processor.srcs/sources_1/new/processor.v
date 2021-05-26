@@ -21,9 +21,7 @@
 
 
 module processor(
-    input [31:0]instr,
-    input clk,
-    output pc_addr
+    input clk
     );
     //wire for controling mux and decoder
     wire [1:0]pc_op;
@@ -35,6 +33,9 @@ module processor(
     wire [2:0]d_op;
     wire [7:0]imm;
     wire jump_cond;
+    wire [31:0]instr;
+    wire [7:0]pc_addr;
+    wire [7:0]d_memo;
     //assign instr to wires
     assign pc_op=instr[25:24];
     assign alu_op=instr[21:20];
@@ -53,6 +54,7 @@ module processor(
     wire [7:0]imm_mux;
     wire [7:0]alu_res;
     wire cmp_res;
+    
     //decoder unit for ce in r0-r6
     wire [6:0]decoder;
     decoder decoder_(
@@ -114,12 +116,12 @@ module processor(
     );
     //multiplexers (exept alu_mux, inplemented in ALU module)
     multiplexer rd_mux_(
-        .idata({8'h00,8'h00,8'h00,8'h00,8'h00,8'h00,alu_res,alu_res}), //nie rozumiem o co tu chodzi!!
+        .idata({8'h00,8'h00,8'h00,8'h00,8'h00,8'h00,d_memo,alu_res}), //nie rozumiem o co tu chodzi!!
         .select({2'b00,rd_op}),
         .odata(rd_mux)
     );
     multiplexer pc_mux_(
-        .idata({8'h00,8'h00,8'h00,8'h00,8'h00,8'h00,alu_res,r7 + 8'd1}),
+        .idata({8'h00,8'h00,8'h00,8'h00,8'h00,8'h00,r7 + 8'd1,alu_res}),
         .select({2'b00,jump_cond}),
         .odata(pc_mux)    
     );
@@ -146,7 +148,23 @@ module processor(
         .alu_res(alu_res),
         .cmp_res(cmp_res)
     );
+    // memory modules
+    d_mem processor_d_mem(
+        .address(alu_res),
+        .data(d_memo)
+    );  
     
-    assign jump_cond = pc_op & cmp_res; //czy to jest warunek skoku
+      i_mem processor_i_mem(
+        .address(pc_addr),
+        .data(instr)
+    );
+    //jump condition
+    jump_cond jump_or_not(
+        .cmp_res(cmp_res),
+        .pc_op(pc_op),
+        .jump_cond(jump_cond)
+    );
+    
     assign pc_addr = r7;
 endmodule
+

@@ -11,18 +11,19 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="602188153fs"></ZoomStartTime>
-      <ZoomEndTime time="607318306fs"></ZoomEndTime>
-      <Cursor1Time time="1000000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="14549665fs"></ZoomEndTime>
+      <Cursor1Time time="3931000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="183"></NameColumnWidth>
-      <ValueColumnWidth column_width="135"></ValueColumnWidth>
+      <ValueColumnWidth column_width="111"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="16" />
    <wvobject fp_name="/testbench_processor/test_processor/instr" type="array">
       <obj_property name="ElementShortName">instr[31:0]</obj_property>
       <obj_property name="ObjectShortName">instr[31:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
@@ -33,54 +34,56 @@
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r0</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench_processor/test_processor/r0_/idata" type="array">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">idata[7:0]</obj_property>
-      <obj_property name="ObjectShortName">idata[7:0]</obj_property>
-      <obj_property name="label">r0_in_data</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/r1_/data" type="array">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r1</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/r2_/data" type="array">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r2</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/r3_/data" type="array">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r3</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/r4_/data" type="array">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r4</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/r5_/data" type="array">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r5</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/r6_/data" type="array">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r6</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/r7_/data" type="array">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data[7:0]</obj_property>
       <obj_property name="ObjectShortName">data[7:0]</obj_property>
       <obj_property name="label">r7</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/testbench_processor/test_processor/alu_processor/ALU_eq/out" type="array">
       <obj_property name="DisplayName">label</obj_property>
