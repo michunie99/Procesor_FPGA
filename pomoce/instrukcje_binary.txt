@@ -3,8 +3,6 @@ Legenda do insturkcji (patrz do architekrura.png)
 0000 | 00 pc_op(2bit)| 00 alu_op(2bit) | 0 rx_op(3bit) | imm_op(1bit) ry_op(3bit) | rd_op(1bit) d_op(3bit) | imm(8bit)
 
 warunek skoku dla pc_op 00 no jump dla 11 zawsze jump dla 01 jump if cmp_res 1 110 jump if cmp_res ~= 1 
-//zaimplementuj to gówno
-
 
 -move Rx,Ry | 0000000000010 Ry 01100 Rx 00000000 | //verified works well (do Rx wpisz Ry)
 
@@ -14,110 +12,21 @@ warunek skoku dla pc_op 00 no jump dla 11 zawsze jump dla 01 jump if cmp_res 1 1
 
 -jump Rx | 0000001100010 Rx 0110011000000000 |  //verified works well
 
-pc_op=11, 
-alu_op=01(2 for sum),
-rx_op= Rx,
-imm_op=1(sum Rx with 0 from imm),
-ry_op=000(whatever),
-rd_op=0,
-d_op= 110 (nothing),
-imm=8'h00
-
 -jumpi imm | 000000110001011011100110 im | //verified works well
-
-pc_op=11,
-alu_op=01(1 for sum),
-rx_op= 101 (1 bo ma być 0 na sum)
-imm_op=1(sum imm with 0 from r6),
-ry_op=000(whatever),
-rd_op=0,
-d_op=110(6 for r6),
-imm=8'd_imm
 
 -jz Rx,imm | 0000000100110 Rx 11100110 imm | //verified works well
 
-pc_op=01,
-alu_op=11(4 for imm),
-rx_op= Rx 
-imm_op=1(sum imm with 0 from r6),
-ry_op=000(whatever),
-rd_op=0,
-d_op=Rx(to write/read to Rx),
-imm=8'd_imm
-
 -jnz Rx,imm | 0000001000110 Rx 11100110 imm | //verified works well
-
-pc_op=10,
-alu_op=11(4 for imm),
-rx_op= Rx 
-imm_op=1(sum imm with 0 from r6),
-ry_op=000(whatever),
-rd_op=0,
-d_op=Rx(to write/read to Rx),
-imm=8'd_imm
 
 -add Rd,Rx,Ry | 0000000000010 Rx 0 Ry 0 Rd 00000000 | //verified works well
 
-pc_op=00(no jumps),
-alu_op=01(1 for sum),
-rx_op= Rx 
-imm_op=0(sum rx with ry),
-ry_op=Ry,
-rd_op=0,
-d_op=Rd(to write/read to Rd),
-imm=8'h00
-
 -add Rd,Rx,imm | 0000000000010 Rx 1 110 0 Rd imm | //verified works well  
-pc_op=00(no jumps),
-alu_op=01(1 for sum),
-rx_op= Rx 
-imm_op=0(sum rx with ry),
-ry_op=000,
-rd_op=0,
-d_op=Rd(to write/read to Rd),
-imm=8'_imm
 
--and Rd,Rx,Ry | 0000000000000 Rx 0 Ry 0 Rd 00000000 | // done not verified
+-and Rd,Rx,Ry | 0000000000000 Rx 0 Ry 0 Rd 00000000 | //verified works well
 
-pc_op=00(no jumps),
-alu_op=00(0 for AND),
-rx_op= Rx 
-imm_op=0(sum rx with ry),
-ry_op=Ry,
-rd_op=0,
-d_op=Rd(to write/read to Rd),
-imm=8'h00
+-andi Rd,Rx,Ry | 0000000000000 Rx 1 110 0 Rd imm | //verified works well
 
+-load Rd, Rx | 000000 | //verified works well
 
--andi Rd,Rx,Ry | 0000000000000 Rx 1 110 0 Rd imm | // done not verified
+-loadi Rd, imm | 0000001000110 Rx 11100110 imm | //verified works well
 
-pc_op=00(no jumps),
-alu_op=00(0 for AND),
-rx_op= Rx 
-imm_op=0(sum rx with ry),
-ry_op=000,
-rd_op=0,
-d_op=Rd(to write/read to Rd),
-imm=8'_imm
-
--load Rd, Rx | 000000 | //
-
-pc_op=00(no jumps),
-alu_op=01(1 for sum),
-rx_op= Rx 
-imm_op=1(sum rx with ry),
-ry_op=000,
-rd_op=1,
-d_op=Rd(to write/read to Rd),
-imm=8'h00
-
--loadi Rd, imm | 0000001000110 Rx 11100110 imm | //
-
-pc_op=00(no jumps),
-alu_op=11(3 for imm),
-rx_op= Rx 
-imm_op=1(sum rx with ry),
-ry_op=000,
-rd_op=1,
-d_op=Rd(to write/read to Rd),
-imm=8'_imm
